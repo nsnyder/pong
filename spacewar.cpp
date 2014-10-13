@@ -49,6 +49,8 @@ void Spacewar::initialize(HWND hwnd)
 	sonyVel.xVel = 60;
 	sonyVel.yVel = 60;
 
+	sony2Vel.xVel = 60;
+	sony2Vel.yVel = 60;
 
     return;
 }
@@ -80,13 +82,13 @@ void Spacewar::update()
 	
 	
 	if (input->isKeyDown(VK_UP))
-		direction.y = -1;
+		direction.y = -3;
 	if (input->isKeyDown(VK_DOWN))
-		direction.y = 1;
+		direction.y = 3;
 	if (GetAsyncKeyState( 'S' ) & 0x8000 )
-		direction2.y = 1;
+		direction2.y = 3;
 	if( GetAsyncKeyState( 'W' ) & 0x8000 )
-		direction2.y = -1;
+		direction2.y = -3;
 	
 
 	// Wrap around
@@ -130,10 +132,10 @@ void Spacewar::update()
 	pos.y = sony.getY() + sonyVel.yVel * frameTime * direction.y;
 	sony.setY(pos.y);
 
-	pos2.x = sony2.getX() + sonyVel.xVel * frameTime * direction2.x;
+	pos2.x = sony2.getX() + sony2Vel.xVel * frameTime * direction2.x;
 	sony2.setX(pos2.x);
 
-	pos2.y = sony2.getY() + sonyVel.yVel * frameTime * direction2.y;
+	pos2.y = sony2.getY() + sony2Vel.yVel * frameTime * direction2.y;
 	sony2.setY(pos2.y);
 
 }

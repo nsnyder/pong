@@ -1,4 +1,4 @@
-﻿Build started 10/13/2014 11:54:43 AM.
+﻿Build started 10/13/2014 4:00:50 PM.
      1>Project "C:\Users\cusimanone1\Documents\Grove City College\Fall 2014\Game Jam 1\pong\Planet.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\\Include" /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt spacewar.cpp
@@ -22,4 +22,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:05.45
+Time Elapsed 00:00:01.61
