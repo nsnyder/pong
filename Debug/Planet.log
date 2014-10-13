@@ -1,22 +1,25 @@
-﻿Build started 2014-09-26 11:08:18.
-     1>Project "C:\Users\snyderna1\Dropbox\Grove City\Classes\Games 1\Chap5SingleTexture Input\Chap5SingleTexture\Planet.vcxproj" on node 2 (Build target(s)).
+﻿Build started 10/13/2014 11:54:43 AM.
+     1>Project "C:\Users\cusimanone1\Documents\Grove City College\Fall 2014\Game Jam 1\pong\Planet.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\\Include" /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt spacewar.cpp
          spacewar.cpp
-     1>c:\users\snyderna1\dropbox\grove city\classes\games 1\chap5singletexture input\chap5singletexture\spacewar.cpp(36): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\snyderna1\dropbox\grove city\classes\games 1\chap5singletexture input\chap5singletexture\spacewar.cpp(37): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\snyderna1\dropbox\grove city\classes\games 1\chap5singletexture input\chap5singletexture\spacewar.cpp(38): warning C4305: 'argument' : truncation from 'double' to 'float'
+     1>c:\users\cusimanone1\documents\grove city college\fall 2014\game jam 1\pong\spacewar.cpp(38): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\cusimanone1\documents\grove city college\fall 2014\game jam 1\pong\spacewar.cpp(39): warning C4305: 'argument' : truncation from 'double' to 'float'
+     1>c:\users\cusimanone1\documents\grove city college\fall 2014\game jam 1\pong\spacewar.cpp(45): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\cusimanone1\documents\grove city college\fall 2014\game jam 1\pong\spacewar.cpp(46): warning C4305: 'argument' : truncation from 'double' to 'float'
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\snyderna1\Dropbox\Grove City\Classes\Games 1\Chap5SingleTexture Input\Chap5SingleTexture\Debug\Planet.exe" /NOLOGO /LIBPATH:"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\\Lib\x86" d3d9.lib d3dx9.lib winmm.lib xinput.lib xinput.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\snyderna1\Dropbox\Grove City\Classes\Games 1\Chap5SingleTexture Input\Chap5SingleTexture\Debug\Planet.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\snyderna1\Dropbox\Grove City\Classes\Games 1\Chap5SingleTexture Input\Chap5SingleTexture\Debug\Planet.lib" /MACHINE:X86 /SAFESEH Debug\game.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\cusimanone1\Documents\Grove City College\Fall 2014\Game Jam 1\pong\Debug\Planet.exe" /NOLOGO /LIBPATH:"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\\Lib\x86" d3d9.lib d3dx9.lib winmm.lib xinput.lib xinput.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\cusimanone1\Documents\Grove City College\Fall 2014\Game Jam 1\pong\Debug\Planet.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\cusimanone1\Documents\Grove City College\Fall 2014\Game Jam 1\pong\Debug\Planet.lib" /MACHINE:X86 /SAFESEH Debug\entity.obj
+         Debug\game.obj
          Debug\graphics.obj
          Debug\image.obj
          Debug\input.obj
+         Debug\paddle.obj
          Debug\spacewar.obj
          Debug\textureManager.obj
          Debug\winmain.obj
-         Planet.vcxproj -> C:\Users\snyderna1\Dropbox\Grove City\Classes\Games 1\Chap5SingleTexture Input\Chap5SingleTexture\Debug\Planet.exe
-     1>Done Building Project "C:\Users\snyderna1\Dropbox\Grove City\Classes\Games 1\Chap5SingleTexture Input\Chap5SingleTexture\Planet.vcxproj" (Build target(s)).
+         Planet.vcxproj -> C:\Users\cusimanone1\Documents\Grove City College\Fall 2014\Game Jam 1\pong\Debug\Planet.exe
+     1>Done Building Project "C:\Users\cusimanone1\Documents\Grove City College\Fall 2014\Game Jam 1\pong\Planet.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:01.90
+Time Elapsed 00:00:05.45

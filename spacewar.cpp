@@ -29,14 +29,21 @@ void Spacewar::initialize(HWND hwnd)
 {
     Game::initialize(hwnd); // throws GameError
 
+	//player 1
 	if (!sonyTexture.initialize(graphics, SONY_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Sony texture initialization failed"));
-	if (!sony.initialize(graphics, 0,0,0, &sonyTexture))
+	if (!sony.initialize(graphics, 50,50,0, &sonyTexture))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error init sony"));
-	sony.setX(GAME_WIDTH/2 - (sony.getWidth()*SONY_IMAGE_SCALE)/2);
+	sony.setX(50);
 	sony.setY(GAME_HEIGHT/2 - (sony.getHeight()*SONY_IMAGE_SCALE)/2);
 	sony.setScale(SONY_IMAGE_SCALE);
 
+	//player 2
+	if (!sony2.initialize(graphics, 50,50,0, &sonyTexture))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error init sony"));
+	sony2.setX(590);
+	sony2.setY(GAME_HEIGHT/2 - (sony2.getHeight()*SONY_IMAGE_SCALE)/2);
+	sony2.setScale(SONY_IMAGE_SCALE);
 
 	
 	sonyVel.xVel = 60;
@@ -54,6 +61,7 @@ void Spacewar::update()
 	//Unomment to get the image to move
 
 	D3DXVECTOR2	pos;
+	D3DXVECTOR2	pos2;
 	//pos.x = sony.getX() + sonyVel.xVel * frameTime;
 	//sony.setX(pos.x);
 //WRAP
@@ -68,15 +76,17 @@ void Spacewar::update()
  ////////////////
 
 	D3DXVECTOR2 direction(0,0);
+	D3DXVECTOR2 direction2(0,0);
 	
-	if (input->isKeyDown(VK_RIGHT) && sony.getX()+sony.getWidth()*sony.getScale()<GAME_WIDTH)
-		direction.x = 1;
-	if (input->isKeyDown(VK_LEFT) && sony.getX()>0)
-		direction.x = -1;
-	if (input->isKeyDown(VK_DOWN) && sony.getY()+sony.getHeight()*sony.getScale()<GAME_HEIGHT)
-		direction.y = 1;
-	if (input->isKeyDown(VK_UP) && sony.getY()>0)
+	
+	if (input->isKeyDown(VK_UP))
 		direction.y = -1;
+	if (input->isKeyDown(VK_DOWN))
+		direction.y = 1;
+	if (GetAsyncKeyState( 'S' ) & 0x8000 )
+		direction2.y = 1;
+	if( GetAsyncKeyState( 'W' ) & 0x8000 )
+		direction2.y = -1;
 	
 
 	// Wrap around
@@ -120,6 +130,12 @@ void Spacewar::update()
 	pos.y = sony.getY() + sonyVel.yVel * frameTime * direction.y;
 	sony.setY(pos.y);
 
+	pos2.x = sony2.getX() + sonyVel.xVel * frameTime * direction2.x;
+	sony2.setX(pos2.x);
+
+	pos2.y = sony2.getY() + sonyVel.yVel * frameTime * direction2.y;
+	sony2.setY(pos2.y);
+
 }
 
 //=============================================================================
@@ -142,6 +158,7 @@ void Spacewar::render()
     graphics->spriteBegin();                // begin drawing sprites
 
 	sony.draw();
+	sony2.draw();
 
 	
 

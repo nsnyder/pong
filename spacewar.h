@@ -29,6 +29,7 @@ private:
 	float sonyYVel;
 	TextureManager sonyTexture;
 	Image sony;
+	Image sony2;
 
 	struct position{
 		float xPos;
