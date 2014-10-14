@@ -8,7 +8,7 @@
 //=============================================================================
 // default constructor
 //=============================================================================
-Ship::Ship() : Entity()
+Paddle::Paddle() : Entity()
 {
     spriteData.width = shipNS::WIDTH;           // size of Ship1
     spriteData.height = shipNS::HEIGHT;
@@ -33,7 +33,7 @@ Ship::Ship() : Entity()
 // typically called once per frame
 // frameTime is used to regulate the speed of movement and animation
 //=============================================================================
-void Ship::update(float frameTime, bool& shoot)
+void Paddle::update(float frameTime, bool& shoot)
 {
     Entity::update(frameTime);
 

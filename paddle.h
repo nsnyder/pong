@@ -26,13 +26,13 @@ namespace shipNS
 }
 
 // inherits from Entity class
-class Ship : public Entity
+class Paddle : public Entity
 {
 protected:
 	VECTOR2 direction;
 public:
     // constructor
-    Ship();
+    Paddle();
 
     // inherited member functions
     void update(float frameTime, bool& shoot);

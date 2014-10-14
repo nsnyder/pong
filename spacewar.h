@@ -11,6 +11,7 @@
 #include "textureManager.h"
 #include "image.h"
 #include "graphics.h"
+#include "paddle.h"
 
 //=============================================================================
 // This class is the core of the game
@@ -29,8 +30,8 @@ private:
 	float sonyYVel;
 	TextureManager sonyTexture;
 	TextureManager bgTexture;
-	Image sony;
-	Image sony2;
+	Paddle sony;
+	Paddle sony2;
 	Image bg;
 
 	struct position{
