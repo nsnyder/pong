@@ -29,6 +29,13 @@ void Spacewar::initialize(HWND hwnd)
 {
     Game::initialize(hwnd); // throws GameError
 
+	// Ball
+	if (!ballTexture.initialize(graphics, BALL_IMAGE))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Sony texture initialization failed"));
+	if (!ball.initialize(this, ballNS::WIDTH,ballNS::HEIGHT,0, &ballTexture))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error init ball"));
+	ball.setScale(.4);
+
 	//player 1
 	if (!sonyTexture.initialize(graphics, SONY_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Sony texture initialization failed"));
@@ -41,20 +48,27 @@ void Spacewar::initialize(HWND hwnd)
 	sony.setX(50);
 	sony.setY(GAME_HEIGHT/2 - (sony.getHeight()*SONY_IMAGE_SCALE)/2);
 	sony.setScale(SONY_IMAGE_SCALE);
-
+	
 	//player 2
 	if (!sony2.initialize(this, 10,50,0, &sonyTexture))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error init sony"));
 	sony2.setX(590);
 	sony2.setY(GAME_HEIGHT/2 - (sony2.getHeight()*SONY_IMAGE_SCALE)/2);
 	sony2.setScale(SONY_IMAGE_SCALE);
+	
+	// 96 point Arial
+    /*if(dxFont96->initialize(graphics, 96, false, false, "Arial") == false)
+        throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing DirectX font"));*/
 
 	
 	sonyVel.xVel = 0;
-	sonyVel.yVel = 60;
+	sonyVel.yVel = 150;
 
 	sony2Vel.xVel = 0;
-	sony2Vel.yVel = 60;
+	sony2Vel.yVel = 150;
+
+	sonyLastFrame = false;
+	sony2LastFrame = false;
 
     return;
 }
@@ -68,6 +82,7 @@ void Spacewar::update()
 
 	D3DXVECTOR2	pos;
 	D3DXVECTOR2	pos2;
+	ball.update(frameTime);
 	//pos.x = sony.getX() + sonyVel.xVel * frameTime;
 	//sony.setX(pos.x);
 //WRAP
@@ -142,18 +157,18 @@ void Spacewar::update()
 	sony2.setY(pos2.y);
 
 	//player 1
-	 if (sony.getY() > 480)
+	 if (sony.getY() > 480-sony.getHeight()*sony.getScale())
     {
-        sony.setY(480);
+        sony.setY(480-sony.getHeight()*sony.getScale());
 	}
 	if (sony.getY() < 0)
 	{
 		sony.setY(0);
 	}
 	//player 2
-	if (sony2.getY() > 480)
+	if (sony2.getY() > 480-sony2.getHeight()*sony2.getScale())
     {
-        sony2.setY(480);
+        sony2.setY(480-sony2.getHeight()*sony2.getScale());
 	}
 	if (sony2.getY() < 0)
 	{
@@ -171,7 +186,32 @@ void Spacewar::ai()
 // Handle collisions
 //=============================================================================
 void Spacewar::collisions()
-{}
+{
+	D3DXVECTOR2 temp;
+	if(ball.collidesWith(sony, temp) && !sonyLastFrame)
+	{
+		sonyLastFrame = true;
+		D3DXVECTOR2 newDir = ball.getVelocity();
+		newDir.x*=-1;
+		ball.setVelocity(newDir);
+		audio->playCue(HIT);
+	}
+	if(ball.collidesWith(sony2, temp) && !sony2LastFrame)
+	{
+		sony2LastFrame = true;
+		D3DXVECTOR2 newDir = ball.getVelocity();
+		newDir.x*=-1;
+		ball.setVelocity(newDir);
+		audio->playCue(HIT);
+	}
+	if(ball.collidesWith(sony, temp)) {
+		sonyLastFrame = true;
+	} else { sonyLastFrame = false; }
+	if(ball.collidesWith(sony2, temp)) {
+		sony2LastFrame = true;
+	} else { sony2LastFrame = false; }
+
+}
 
 //=============================================================================
 // Render game items
@@ -182,6 +222,8 @@ void Spacewar::render()
 	bg.draw();
 	sony.draw();
 	sony2.draw();
+	ball.draw();
+	//dxFont96->print("TEST",10,76);         // display message
 
 	
 

@@ -21,6 +21,9 @@
 #define LP_3DDEVICE LPDIRECT3DDEVICE9
 #define LP_3D       LPDIRECT3D9
 #define VECTOR2     D3DXVECTOR2
+#define LP_VERTEXBUFFER LPDIRECT3DVERTEXBUFFER9
+#define LP_DXFONT   LPD3DXFONT
+#define LP_VERTEXBUFFER LPDIRECT3DVERTEXBUFFER9
 
 // Color defines
 #define COLOR_ARGB DWORD
@@ -121,6 +124,8 @@ public:
     // Post: width and height = size of texture
     //       texture points to texture
     HRESULT loadTexture(const char * filename, COLOR_ARGB transcolor, UINT &width, UINT &height, LP_TEXTURE &texture);
+
+
 
     // Display the offscreen backbuffer to the screen.
     HRESULT showBackbuffer();

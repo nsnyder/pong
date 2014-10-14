@@ -12,6 +12,7 @@
 #include "image.h"
 #include "graphics.h"
 #include "paddle.h"
+#include "ball.h"
 
 //=============================================================================
 // This class is the core of the game
@@ -30,9 +31,13 @@ private:
 	float sonyYVel;
 	TextureManager sonyTexture;
 	TextureManager bgTexture;
+	TextureManager ballTexture;
 	Paddle sony;
 	Paddle sony2;
+	Ball ball;
 	Image bg;
+	//TextDX  *dxFont96;
+	bool sonyLastFrame, sony2LastFrame;
 
 	struct position{
 		float xPos;

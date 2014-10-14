@@ -27,7 +27,8 @@
 //                  Constants
 //-----------------------------------------------
 // graphic images
-const char BACKGROUND_IMAGE[] = "pictures\\background.png";  // photo source NASA/courtesy of nasaimages.org 
+const char BACKGROUND_IMAGE[] = "pictures\\background.png";  // photo source NASA/courtesy of nasaimages.org
+const char BALL_IMAGE[] = "pictures\\ball.png"; // ball picture
 const char PLANET_IMAGE[] = "pictures\\planet.png"; // picture of planet
 const char SONY_IMAGE[] = "pictures\\sony.png";
 
@@ -54,11 +55,12 @@ const UCHAR ENTER_KEY    = VK_RETURN;   // Enter key
 
 // audio files required by audio.cpp
 // WAVE_BANK must be location of .xwb file.
-const char WAVE_BANK[]  = "audio\\Win\\pong.xwb";
+const char WAVE_BANK[]  = "audio\\Win\\MyWBank.xwb";
 // SOUND_BANK must be location of .xsb file.
-const char SOUND_BANK[] = "audio\\Win\\pong.xsb";
+const char SOUND_BANK[] = "audio\\Win\\MySBank.xsb";
 
 // audio cues
 const char HIT[] = "hit";
+const char MISS[] = "bloop_x";
 
 #endif

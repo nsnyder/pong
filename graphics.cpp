@@ -354,3 +354,4 @@ void Graphics::changeDisplayMode(graphicsNS::DISPLAY_MODE mode)
                     TRUE);                                       // Repaint the window
     }
 }
+
