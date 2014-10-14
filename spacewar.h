@@ -13,6 +13,7 @@
 #include "graphics.h"
 #include "paddle.h"
 #include "ball.h"
+#include <sstream>
 
 //=============================================================================
 // This class is the core of the game
@@ -36,7 +37,7 @@ private:
 	Paddle sony2;
 	Ball ball;
 	Image bg;
-	//TextDX  *dxFont96;
+	TextDX  *dxFont96;
 	bool sonyLastFrame, sony2LastFrame;
 
 	struct position{

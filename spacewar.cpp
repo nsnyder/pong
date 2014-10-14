@@ -6,6 +6,7 @@
 // This class is the core of the game
 
 #include "spaceWar.h"
+int score1=0,score2=0;
 
 //=============================================================================
 // Constructor
@@ -27,6 +28,8 @@ Spacewar::~Spacewar()
 //=============================================================================
 void Spacewar::initialize(HWND hwnd)
 {
+	score1=0;
+	score2=0;
     Game::initialize(hwnd); // throws GameError
 
 	// Ball
@@ -57,8 +60,9 @@ void Spacewar::initialize(HWND hwnd)
 	sony2.setScale(SONY_IMAGE_SCALE);
 	
 	// 96 point Arial
-    /*if(dxFont96->initialize(graphics, 96, false, false, "Arial") == false)
-        throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing DirectX font"));*/
+	dxFont96 = new TextDX();
+    if(dxFont96->initialize(graphics, 96, false, false, "Arial") == false)
+        throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing DirectX font"));
 
 	
 	sonyVel.xVel = 0;
@@ -223,7 +227,13 @@ void Spacewar::render()
 	sony.draw();
 	sony2.draw();
 	ball.draw();
-	//dxFont96->print("TEST",10,76);         // display message
+	std::stringstream s1;
+	s1 << score1;
+	std::stringstream s2;
+	s2 << score2;
+	if(score1==11 || score2==11) exitGame();
+	dxFont96->print(s1.str(),110,76);         // display message
+	dxFont96->print(s2.str(),400,76);         // display message
 
 	
 

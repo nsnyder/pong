@@ -4,6 +4,8 @@
 // Chapter 7 ship.cpp v1.0
 
 #include "ball.h"
+extern int score1;
+extern int score2;
 
 //=============================================================================
 // default constructor
@@ -66,12 +68,14 @@ void Ball::update(float frameTime)
         spriteData.x = GAME_WIDTH/2; 
 		spriteData.y = GAME_HEIGHT/2;
 		audio->playCue(MISS);
+		score1++;
     } 
     else if (spriteData.x < 0)
     {
         spriteData.x = GAME_WIDTH/2;
 		spriteData.y = GAME_HEIGHT/2;
 		audio->playCue(MISS);
+		score2++;
 
     }
     if (spriteData.y > GAME_HEIGHT-ballNS::HEIGHT*getScale())

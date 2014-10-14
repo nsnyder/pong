@@ -14,6 +14,8 @@
 #include "constants.h"
 #include "gameError.h"
 #include "audio.h"
+#include "text.h"
+#include "textDX.h"
 
 
 class Game

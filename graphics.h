@@ -1,7 +1,7 @@
 // Programming 2D Games
 // Copyright (c) 2011 by:
 // Charles Kelly
-// Chapter 5 graphics.h v1.0
+// graphics.h v1.0
 
 #ifndef _GRAPHICS_H             // Prevent multiple definitions if this 
 #define _GRAPHICS_H             // file is included in more than one place
@@ -62,6 +62,18 @@ namespace graphicsNS
     enum DISPLAY_MODE{TOGGLE, FULLSCREEN, WINDOW};
 }
 
+struct VertexC              // Vertex with Color
+{
+    float x, y, z;          // vertex location
+    float rhw;              // reciprocal homogeneous W (set to 1)
+    unsigned long color;    // vertex color
+};
+
+// Flexible Vertex Format Codes
+// D3DFVF_XYZRHW = The verticies are transformed
+// D3DFVF_DIFFUSE = The verticies contain diffuse color data 
+#define D3DFVF_VERTEX (D3DFVF_XYZRHW | D3DFVF_DIFFUSE)
+
 // SpriteData: The properties required by Graphics::drawSprite to draw a sprite
 struct SpriteData
 {
@@ -117,6 +129,18 @@ public:
     //      fullscreen = true for full screen, false for window
     void    initialize(HWND hw, int width, int height, bool fullscreen);
 
+    // Create a vertex buffer.
+    // Pre: verts[] contains vertex data.
+    //      size = size of verts[]
+    // Post: &vertexBuffer points to buffer if successful.
+    HRESULT createVertexBuffer(VertexC verts[], UINT size, LP_VERTEXBUFFER &vertexBuffer);
+
+    // Display a quad (rectangle) with alpha transparency.
+    // Pre: createVertexBuffer was used to create vertexBuffer containing four
+    //      vertices defining the quad in clockwise order.
+    //      g3ddev->BeginScene was called
+    bool    drawQuad(LP_VERTEXBUFFER vertexBuffer);
+
     // Load the texture into default D3D memory (normal texture use)
     // For internal engine use only. Use the TextureManager class to load game textures.
     // Pre: filename = name of texture file.
@@ -125,7 +149,13 @@ public:
     //       texture points to texture
     HRESULT loadTexture(const char * filename, COLOR_ARGB transcolor, UINT &width, UINT &height, LP_TEXTURE &texture);
 
-
+    // Load the texture into system memory (system memory is lockable)
+    // Provides direct access to pixel data. Use the TextureManager class to load textures for display.
+    // Pre: filename = name of texture file.
+    //      transcolor = transparent color
+    // Post: width and height = size of texture
+    //       texture points to texture
+    HRESULT loadTextureSystemMem(const char *filename, COLOR_ARGB transcolor, UINT &width, UINT &height, LP_TEXTURE &texture);
 
     // Display the offscreen backbuffer to the screen.
     HRESULT showBackbuffer();
@@ -155,6 +185,18 @@ public:
     // Post: All user surfaces are recreated.
     void    changeDisplayMode(graphicsNS::DISPLAY_MODE mode = graphicsNS::TOGGLE);
 
+    // Return length of vector v.
+    static float    Vector2Length(const VECTOR2 *v) {return D3DXVec2Length(v);}
+
+    // Return Dot product of vectors v1 and v2.
+    static float    Vector2Dot(const VECTOR2 *v1, const VECTOR2 *v2) {return D3DXVec2Dot(v1, v2);}
+
+    // Normalize vector v.
+    static void     Vector2Normalize(VECTOR2 *v) {D3DXVec2Normalize(v, v);}
+
+    // Transform vector v with matrix m.
+    static VECTOR2* Vector2Transform(VECTOR2 *v, D3DXMATRIX *m) {return D3DXVec2TransformCoord(v,v,m);}
+
     // get functions
     // Return direct3d.
     LP_3D   get3D()             { return direct3d; }
@@ -177,9 +219,6 @@ public:
     // Set color used to clear screen
     void setBackColor(COLOR_ARGB c) {backColor = c;}
 
-	static float    Vector2Dot(const VECTOR2 *v1, const VECTOR2 *v2) {return D3DXVec2Dot(v1, v2);}//NEC
-
-	static void     Vector2Normalize(VECTOR2 *v) {D3DXVec2Normalize(v, v);}
     //=============================================================================
     // Clear backbuffer and BeginScene()
     //=============================================================================
