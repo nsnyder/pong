@@ -28,8 +28,10 @@ private:
 	float sonyXVel;
 	float sonyYVel;
 	TextureManager sonyTexture;
+	TextureManager bgTexture;
 	Image sony;
 	Image sony2;
+	Image bg;
 
 	struct position{
 		float xPos;

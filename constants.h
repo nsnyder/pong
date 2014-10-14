@@ -27,7 +27,7 @@
 //                  Constants
 //-----------------------------------------------
 // graphic images
-const char NEBULA_IMAGE[] = "pictures\\orion.jpg";  // photo source NASA/courtesy of nasaimages.org 
+const char BACKGROUND_IMAGE[] = "pictures\\background.png";  // photo source NASA/courtesy of nasaimages.org 
 const char PLANET_IMAGE[] = "pictures\\planet.png"; // picture of planet
 const char SONY_IMAGE[] = "pictures\\sony.png";
 

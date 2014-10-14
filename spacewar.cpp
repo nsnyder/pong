@@ -34,6 +34,10 @@ void Spacewar::initialize(HWND hwnd)
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Sony texture initialization failed"));
 	if (!sony.initialize(graphics, 50,50,0, &sonyTexture))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error init sony"));
+	if (!bgTexture.initialize(graphics, BACKGROUND_IMAGE))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Background texture initialization failed"));
+	if (!bg.initialize(graphics, 640,480,0, &bgTexture))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error init background"));
 	sony.setX(50);
 	sony.setY(GAME_HEIGHT/2 - (sony.getHeight()*SONY_IMAGE_SCALE)/2);
 	sony.setScale(SONY_IMAGE_SCALE);
@@ -46,10 +50,10 @@ void Spacewar::initialize(HWND hwnd)
 	sony2.setScale(SONY_IMAGE_SCALE);
 
 	
-	sonyVel.xVel = 60;
+	sonyVel.xVel = 0;
 	sonyVel.yVel = 60;
 
-	sony2Vel.xVel = 60;
+	sony2Vel.xVel = 0;
 	sony2Vel.yVel = 60;
 
     return;
@@ -82,13 +86,13 @@ void Spacewar::update()
 	
 	
 	if (input->isKeyDown(VK_UP))
-		direction.y = -3;
+		direction.y = -1;
 	if (input->isKeyDown(VK_DOWN))
-		direction.y = 3;
+		direction.y = 1;
 	if (GetAsyncKeyState( 'S' ) & 0x8000 )
-		direction2.y = 3;
+		direction2.y = 1;
 	if( GetAsyncKeyState( 'W' ) & 0x8000 )
-		direction2.y = -3;
+		direction2.y = -1;
 	
 
 	// Wrap around
@@ -126,14 +130,9 @@ void Spacewar::update()
 	*/
 	D3DXVec2Normalize(&direction, &direction);
 
-	pos.x = sony.getX() + sonyVel.xVel * frameTime * direction.x;
-	sony.setX(pos.x);
-
 	pos.y = sony.getY() + sonyVel.yVel * frameTime * direction.y;
 	sony.setY(pos.y);
 
-	pos2.x = sony2.getX() + sony2Vel.xVel * frameTime * direction2.x;
-	sony2.setX(pos2.x);
 
 	pos2.y = sony2.getY() + sony2Vel.yVel * frameTime * direction2.y;
 	sony2.setY(pos2.y);
@@ -158,7 +157,7 @@ void Spacewar::collisions()
 void Spacewar::render()
 {
     graphics->spriteBegin();                // begin drawing sprites
-
+	bg.draw();
 	sony.draw();
 	sony2.draw();
 
