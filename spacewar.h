@@ -22,7 +22,7 @@ private:
 
 	// My defines
 
-	#define SONY_IMAGE_SCALE 0.4
+	#define SONY_IMAGE_SCALE 1
 
 // My vars
 
