@@ -86,13 +86,18 @@ void Spacewar::update()
 	
 	
 	if (input->isKeyDown(VK_UP))
+	{
 		direction.y = -1;
+	}
 	if (input->isKeyDown(VK_DOWN))
+	{
 		direction.y = 1;
+	}
 	if (GetAsyncKeyState( 'S' ) )
 		direction2.y = 1;
 	if( GetAsyncKeyState( 'W' ) )
 		direction2.y = -1;
+	
 	
 
 	// Wrap around
@@ -133,10 +138,27 @@ void Spacewar::update()
 	pos.y = sony.getY() + sonyVel.yVel * frameTime * direction.y;
 	sony.setY(pos.y);
 
-
 	pos2.y = sony2.getY() + sony2Vel.yVel * frameTime * direction2.y;
 	sony2.setY(pos2.y);
 
+	//player 1
+	 if (sony.getY() > 480)
+    {
+        sony.setY(480);
+	}
+	if (sony.getY() < 0)
+	{
+		sony.setY(0);
+	}
+	//player 2
+	if (sony2.getY() > 480)
+    {
+        sony2.setY(480);
+	}
+	if (sony2.getY() < 0)
+	{
+		sony2.setY(0);
+	}
 }
 
 //=============================================================================
