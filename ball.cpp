@@ -18,16 +18,22 @@ Ball::Ball() : Entity()
     spriteData.y = ballNS::Y;
     spriteData.rect.bottom = ballNS::HEIGHT;    // rectangle to select parts of an image
     spriteData.rect.right = ballNS::WIDTH;
-    velocity.x = 100;                             // velocity X
-    velocity.y = 100;                             // velocity Y
+	
+	edge.top = 0;
+    edge.left = 0;
+	edge.bottom = ballNS::HEIGHT;
+    edge.right = ballNS::WIDTH;
+	
+    velocity.x = 30;                             // velocity X
+    velocity.y = 10;                             // velocity Y
     frameDelay = ballNS::SHIP_ANIMATION_DELAY;
     startFrame = ballNS::SHIP1_START_FRAME;     // first frame of ship animation
     endFrame     = ballNS::SHIP1_END_FRAME;     // last frame of ship animation
     currentFrame = startFrame;
     radius = ballNS::WIDTH/2.0;
-    collisionType = entityNS::CIRCLE;
+	collisionType = entityNS::BOX;
 	direction.x = 1;
-	direction.y = 1;
+	direction.y = .5;
 }
 
 //=============================================================================

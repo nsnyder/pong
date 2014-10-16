@@ -10,20 +10,24 @@
 //=============================================================================
 Paddle::Paddle() : Entity()
 {
-    spriteData.width = shipNS::WIDTH;           // size of Ship1
-    spriteData.height = shipNS::HEIGHT;
-    spriteData.x = shipNS::X;                   // location on screen
-    spriteData.y = shipNS::Y;
-    spriteData.rect.bottom = shipNS::HEIGHT;    // rectangle to select parts of an image
-    spriteData.rect.right = shipNS::WIDTH;
+    spriteData.width = paddleNS::WIDTH;           // size of Ship1
+    spriteData.height = paddleNS::HEIGHT;
+    spriteData.x = paddleNS::X;                   // location on screen
+    spriteData.y = paddleNS::Y;
+    spriteData.rect.bottom = paddleNS::HEIGHT;    // rectangle to select parts of an image
+    spriteData.rect.right = paddleNS::WIDTH;
+	edge.top = 0;
+    edge.left = 0;
+	edge.bottom = paddleNS::HEIGHT;
+    edge.right = paddleNS::WIDTH;
     velocity.x = 0;                             // velocity X
     velocity.y = 0;                             // velocity Y
-    frameDelay = shipNS::SHIP_ANIMATION_DELAY;
-    startFrame = shipNS::SHIP1_START_FRAME;     // first frame of ship animation
-    endFrame     = shipNS::SHIP1_END_FRAME;     // last frame of ship animation
+    frameDelay = paddleNS::SHIP_ANIMATION_DELAY;
+    startFrame = paddleNS::SHIP1_START_FRAME;     // first frame of ship animation
+    endFrame     = paddleNS::SHIP1_END_FRAME;     // last frame of ship animation
     currentFrame = startFrame;
-    radius = shipNS::WIDTH/2.0;
-    collisionType = entityNS::CIRCLE;
+    radius = paddleNS::WIDTH/2.0;
+    collisionType = entityNS::BOX;
 	direction.x = 0;
 	direction.y = 0;
 }
@@ -62,17 +66,17 @@ void Paddle::update(float frameTime, bool& shoot)
     spriteData.y += frameTime * velocity.y * direction.y;     // move ship along Y
 
     //wall-bounding
-    if (spriteData.x > GAME_WIDTH-shipNS::WIDTH*getScale())
+    if (spriteData.x > GAME_WIDTH-paddleNS::WIDTH*getScale())
     {
-        spriteData.x = GAME_WIDTH-shipNS::WIDTH*getScale();   
+        spriteData.x = GAME_WIDTH-paddleNS::WIDTH*getScale();   
     } 
     else if (spriteData.x < 0)
     {
         spriteData.x = 0;
     }
-    if (spriteData.y > GAME_HEIGHT-shipNS::HEIGHT*getScale())
+    if (spriteData.y > GAME_HEIGHT-paddleNS::HEIGHT*getScale())
     {
-        spriteData.y = GAME_HEIGHT-shipNS::HEIGHT*getScale();
+        spriteData.y = GAME_HEIGHT-paddleNS::HEIGHT*getScale();
 	}
 	else if (spriteData.y < 0)
 	{

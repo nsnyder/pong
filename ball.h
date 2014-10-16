@@ -12,12 +12,12 @@
 
 namespace ballNS
 {
-    const int WIDTH = 38;                   // image width
-    const int HEIGHT = 38;                  // image height
+    const int WIDTH = 40;                   // image width
+    const int HEIGHT = 40;                  // image height
     const int X = GAME_WIDTH/2 - WIDTH/2;   // location on screen
     const int Y = GAME_HEIGHT/2 - HEIGHT/2;
     const float ROTATION_RATE = (float)PI;  // radians per second
-    const float SPEED = 150;                // 100 pixels per second
+    const float SPEED = 600;                // 100 pixels per second
     const float MASS = 300.0f;              // mass
     const int   TEXTURE_COLS = 8;           // texture has 2 columns
     const int   SHIP1_START_FRAME = 0;      // ship starts at frame 0

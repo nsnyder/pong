@@ -38,24 +38,25 @@ void Spacewar::initialize(HWND hwnd)
 	if (!ball.initialize(this, ballNS::WIDTH,ballNS::HEIGHT,0, &ballTexture))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error init ball"));
 	ball.setScale(.4);
+	
 
 	//player 1
 	if (!sonyTexture.initialize(graphics, SONY_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Sony texture initialization failed"));
-	if (!sony.initialize(this, 10,50,0, &sonyTexture))
+	if (!sony.initialize(this, 64,64,0, &sonyTexture))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error init sony"));
 	if (!bgTexture.initialize(graphics, BACKGROUND_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Background texture initialization failed"));
 	if (!bg.initialize(graphics, 640,480,0, &bgTexture))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error init background"));
-	sony.setX(50);
+	sony.setX(50-sony2.getWidth()*SONY_IMAGE_SCALE/2);
 	sony.setY(GAME_HEIGHT/2 - (sony.getHeight()*SONY_IMAGE_SCALE)/2);
 	sony.setScale(SONY_IMAGE_SCALE);
 	
 	//player 2
-	if (!sony2.initialize(this, 10,50,0, &sonyTexture))
+	if (!sony2.initialize(this, 64,64,0, &sonyTexture))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error init sony"));
-	sony2.setX(590);
+	sony2.setX(590-sony2.getWidth()*SONY_IMAGE_SCALE/2);
 	sony2.setY(GAME_HEIGHT/2 - (sony2.getHeight()*SONY_IMAGE_SCALE)/2);
 	sony2.setScale(SONY_IMAGE_SCALE);
 	
@@ -66,10 +67,10 @@ void Spacewar::initialize(HWND hwnd)
 
 	
 	sonyVel.xVel = 0;
-	sonyVel.yVel = 150;
+	sonyVel.yVel = 100;
 
 	sony2Vel.xVel = 0;
-	sony2Vel.yVel = 150;
+	sony2Vel.yVel = 100;
 
 	sonyLastFrame = false;
 	sony2LastFrame = false;
