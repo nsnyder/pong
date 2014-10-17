@@ -10,16 +10,16 @@
 //=============================================================================
 Paddle::Paddle() : Entity()
 {
-    spriteData.width = paddleNS::WIDTH;           // size of Ship1
-    spriteData.height = paddleNS::HEIGHT;
+    spriteData.width = 64;           // size of Ship1
+    spriteData.height = 64;
     spriteData.x = paddleNS::X;                   // location on screen
     spriteData.y = paddleNS::Y;
     spriteData.rect.bottom = paddleNS::HEIGHT;    // rectangle to select parts of an image
     spriteData.rect.right = paddleNS::WIDTH;
-	edge.top = 0;
-    edge.left = 0;
-	edge.bottom = paddleNS::HEIGHT;
-    edge.right = paddleNS::WIDTH;
+	edge.top = -paddleNS::HEIGHT/2;
+    edge.left = -paddleNS::WIDTH/2;
+	edge.bottom = paddleNS::HEIGHT/2;
+    edge.right = paddleNS::WIDTH/2;
     velocity.x = 0;                             // velocity X
     velocity.y = 0;                             // velocity Y
     frameDelay = paddleNS::SHIP_ANIMATION_DELAY;

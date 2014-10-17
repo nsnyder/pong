@@ -37,7 +37,7 @@ void Spacewar::initialize(HWND hwnd)
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Sony texture initialization failed"));
 	if (!ball.initialize(this, ballNS::WIDTH,ballNS::HEIGHT,0, &ballTexture))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error init ball"));
-	ball.setScale(.4);
+	ball.setScale(ballNS::BALL_SCALE);
 	
 
 	//player 1
